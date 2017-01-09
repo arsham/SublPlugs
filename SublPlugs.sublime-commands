@@ -1,6 +1,7 @@
 [
     {"caption": "Reveal File In SideBar", "command": "reveal_in_side_bar"},
     {"caption": "Open Mouse Settings", "command": "open_file", "args": {"file": "${packages}/User/Default (Linux).sublime-mousemap"}},
+    {"caption": "Open Project", "command": "prompt_open_project_or_workspace"},
 
     {"caption": "SublPlugs: System commands", "command": "open_file", "args": {"file": "${packages}/SublPlugs/SublPlugs.sublime-commands"}},
     {"caption": "SublPlugs: User commands", "command": "open_file", "args": {"file": "${packages}/User/SublPlugs.sublime-settings"}},
