@@ -135,17 +135,16 @@
         </dict>
         <dict>
             <key>name</key>
-            <string>Variable:go</string>
+            <string>Variable: short</string>
             <key>scope</key>
             <string>
-				source.go
-				meta.initialization.short.go
-				variable.other.go
+				meta.initialization.short
+				variable.other
             </string>
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#9CFA83</string>
+                <string>#60AC18</string>
             </dict>
         </dict>
         <dict>
@@ -215,7 +214,7 @@
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#E06C46</string>
+                <string>#E04C46</string>
             </dict>
         </dict>
         <dict>
@@ -226,7 +225,7 @@
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#4ABE4E</string>
+                <string>#56CBAE</string>
             </dict>
         </dict>
         <dict>
@@ -320,7 +319,7 @@
                 <key>fontStyle</key>
                 <string></string>
                 <key>foreground</key>
-                <string>#D8556D</string>
+                <string>#D8A855</string>
             </dict>
         </dict>
         <dict>
@@ -461,7 +460,7 @@
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#ED8F65</string>
+                <string>#ED658F</string>
             </dict>
         </dict>
         <dict>
