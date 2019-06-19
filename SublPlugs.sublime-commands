@@ -1,6 +1,6 @@
 [
     {"caption": "SublPlugs: System commands", "command": "open_file", "args": {"file": "${packages}/SublPlugs/SublPlugs.sublime-commands"}},
-    {"caption": "SublPlugs: User commands", "command": "open_file", "args": {"file": "${packages}/User/SublPlugs.sublime-settings"}},
+    {"caption": "SublPlugs: User commands", "command": "open_file", "args": {"file": "${packages}/User/Default.sublime-commands"}},
     {"caption": "Fold Comments", "command": "fold_comments"},
     {"caption": "Unfold Comments", "command": "unfold_comments"},
 
