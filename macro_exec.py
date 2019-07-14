@@ -29,10 +29,6 @@ class MacroRecordCommand(sublime_plugin.WindowCommand):
     is_recording = False
     macros = {}
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._load_macros()
-
     def _load_macros(self):
         resource = sublime.find_resources(MACRO_FILE)
         if not resource:
@@ -42,6 +38,7 @@ class MacroRecordCommand(sublime_plugin.WindowCommand):
         if not resource:
             return
 
+        self.macros = {}
         for key, value in enumerate(sublime.decode_value(resource)):
             self.macros[key] = value
 
@@ -54,7 +51,7 @@ class MacroRecordCommand(sublime_plugin.WindowCommand):
             sublime.status_message("cannot repeat in middle of recording")
             return
 
-        if action not in ["record", "repeat", "save", "select", ""]:
+        if action not in ["record", "repeat", "save", "select", "delete", ""]:
             sublime.status_message("unknown action")
             return
 
@@ -64,8 +61,8 @@ class MacroRecordCommand(sublime_plugin.WindowCommand):
 
         if action == "save":
             self.window.show_input_panel(
-                "caption",
-                "initial_text",
+                "macro name",
+                "",
                 self._persist,
                 None,
                 None,
@@ -74,6 +71,10 @@ class MacroRecordCommand(sublime_plugin.WindowCommand):
 
         if action == "select":
             self._list()
+            return
+
+        if action == "delete":
+            self._delete()
             return
 
         self._record()
@@ -102,9 +103,9 @@ class MacroRecordCommand(sublime_plugin.WindowCommand):
             .set(caption, MacroRecordCommand.command_list)
 
         sublime.save_settings(MACRO_FILE)
-        self._load_macros()
 
-    def _list(self):
+    def _load_items(self):
+        self._load_macros()
         if not self.macros:
             sublime.status_message("no macros recorded yet")
             return
@@ -112,6 +113,12 @@ class MacroRecordCommand(sublime_plugin.WindowCommand):
         items = []
         for i in range(len(self.macros)):
             items.append(self.macros[i])
+        return items
+
+    def _list(self):
+        items = self._load_items()
+        if not items:
+            return
         sublime.active_window().show_quick_panel(items, self._run_macro, sublime.MONOSPACE_FONT)
 
     def _run_macro(self, choice):
@@ -120,6 +127,27 @@ class MacroRecordCommand(sublime_plugin.WindowCommand):
         name = self.macros[choice]
         macro = sublime.load_settings(MACRO_FILE).get(name)
         self._repeat(macro)
+
+    def _delete(self):
+        items = self._load_items()
+        if not items:
+            return
+        sublime.active_window().show_quick_panel(items, self._delete_macro, sublime.MONOSPACE_FONT)
+
+    def _delete_macro(self, choice):
+        if choice < 0:
+            return
+
+        self._load_macros()
+
+        s = sublime.load_settings(MACRO_FILE)
+        for i in range(len(self.macros)):
+            name = self.macros[choice]
+            if i == choice:
+                s.erase(name)
+                continue
+
+        sublime.save_settings(MACRO_FILE)
 
 
 class MacroExecListener(sublime_plugin.EventListener):

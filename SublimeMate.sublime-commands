@@ -5,6 +5,7 @@
     {"caption": "Mate: Repeat Macro",    "command": "macro_record", "args": {"action": "repeat"}},
     {"caption": "Mate: Save Macro",      "command": "macro_record", "args": {"action": "save"}},
     {"caption": "Mate: Select Macro",    "command": "macro_record", "args": {"action": "select"}},
+    {"caption": "Mate: Delete Macro",    "command": "macro_record", "args": {"action": "delete"}},
 
     {"caption": "Fold Comments",         "command": "fold_comments"},
     {"caption": "Unfold Comments",       "command": "unfold_comments"},
