@@ -1,3 +1,5 @@
 [
-    { "keys": ["ctrl+shift+;"], "command": "show_mate_commands" }
+    { "keys": ["ctrl+shift+;"], "command": "show_mate_commands" },
+    { "keys": ["ctrl+alt+q"], "command": "macro_record" },
+    { "keys": ["ctrl+alt+shift+q"], "command": "macro_record", "args": {"action": "repeat"} },
 ]
